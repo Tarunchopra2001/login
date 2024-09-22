@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Reward System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .reward-info {
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 lg-5 border-bottom navbar" id="navbar">
+            <div class="container-fluid ">
+              <a class="navbar-brand fs-4" href="#"><span class="text-success">Neural-Ninjas</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 ">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="info.html">KnowledgeBook</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="calci.html">Calculator</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="reward.html">Rewards</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">SEO</a></li>
+                      <li><a class="dropdown-item" href="#">Front End</a></li>
+                      <li><a class="dropdown-item" href="#">Back End</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </section>
+    <div class="container my-5">
+        <h1 class="mb-5 text-center">Carbon Footprint Reward System</h1>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Check Your Rewards</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Click the button below to check your rewards based on your latest carbon footprint calculation.</p>
+                        <button id="checkRewardsBtn" class="btn btn-primary">Check Rewards</button>
+                    </div>
+                </div>
+
+                <div id="rewardCard" class="card mt-4" style="display: none;">
+                    <div class="card-header">
+                        <h3 class="card-title">Your Reward Results</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Your current carbon footprint: <span id="currentFootprint"></span> kg CO2e</p>
+                        <p>Your previous carbon footprint: <span id="previousFootprint"></span> kg CO2e</p>
+                        <div class="reward-info">
+                            <h4>Reward Points</h4>
+                            <p>Points earned: <span id="pointsEarned"></span></p>
+                            <p>Explanation: <span id="rewardExplanation"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkRewardsBtn = document.getElementById('checkRewardsBtn');
+            const rewardCard = document.getElementById('rewardCard');
+
+            checkRewardsBtn.addEventListener('click', function() {
+                const currentFootprint = parseFloat(localStorage.getItem('currentFootprint') || 0);
+                let previousFootprint = parseFloat(localStorage.getItem('previousFootprint') || 0);
+
+                // Calculate reward points
+                const footprintDifference = previousFootprint - currentFootprint;
+                const pointsEarned = Math.max(0, Math.round(footprintDifference * 10));
+
+                // Update reward card
+                document.getElementById('currentFootprint').textContent = currentFootprint.toFixed(2);
+                document.getElementById('previousFootprint').textContent = previousFootprint.toFixed(2);
+                document.getElementById('pointsEarned').textContent = pointsEarned;
+
+                let explanation;
+                if (pointsEarned > 0) {
+                    explanation = `Great job! You've reduced your carbon footprint by ${footprintDifference.toFixed(2)} kg CO2e. You earn 10 points for each kg CO2e reduced.`;
+                } else {
+                    explanation = "Keep trying to reduce your carbon footprint to earn reward points!";
+                }
+                document.getElementById('rewardExplanation').textContent = explanation;
+
+                // Show reward card
+                rewardCard.style.display = 'block';
+
+                // Store current footprint as previous for next calculation
+                localStorage.setItem('previousFootprint', currentFootprint);
+            });
+        });
+    </script>
+<script>
+  window.embeddedChatbotConfig = {
+  chatbotId: "OkJAjbNj7q8wkyKUh9YK9",
+  domain: "www.chatbase.co"
+  }
+  </script>
+  <script
+  src="https://www.chatbase.co/embed.min.js"
+  chatbotId="OkJAjbNj7q8wkyKUh9YK9"
+  domain="www.chatbase.co"
+  defer>
+  </script>
+</body>
+</html>
