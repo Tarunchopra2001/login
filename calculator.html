@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint in Indian Coal Mines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .calculator-section {
+            display: none;
+        }
+        .calculator-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 lg-5 border-bottom navbar" id="navbar">
+            <div class="container-fluid ">
+              <a class="navbar-brand fs-4" href="#"><span class="text-success">Neural-Ninjas</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 ">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="info.html">KnowledgeBook</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="calci.html">Calculator</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="reward.html">Rewards</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">SEO</a></li>
+                      <li><a class="dropdown-item" href="#">Front End</a></li>
+                      <li><a class="dropdown-item" href="#">Back End</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </section>
+    
+    <main class="container my-5">
+        <!-- Calculators Section -->
+        <section id="calculators" class="mb-5">
+            <h2 class="display-4 mb-4">Carbon Footprint Calculators</h2>
+            <ul class="nav nav-tabs" id="calculatorTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#individual">Individual Calculator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#organization">Organization Calculator</a>
+                </li>
+            </ul>
+            <div class="tab-content mt-3">
+                <div class="tab-pane fade show active" id="individual">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Individual Carbon Footprint Calculator</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="individualForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="electricity" class="form-label">Monthly Electricity Usage (kWh)</label>
+                                        <input type="number" class="form-control" id="electricity" placeholder="Enter kWh">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="transport" class="form-label">Monthly Transport Distance (km)</label>
+                                        <input type="number" class="form-control" id="transport" placeholder="Enter km">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="renewable" class="form-label">Renewable Energy Usage (kWh)</label>
+                                        <input type="number" class="form-control" id="renewable" placeholder="Enter kWh">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="waste" class="form-label">Monthly Waste Generated</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="waste" placeholder="Enter amount">
+                                            <select class="form-select" id="wasteUnit">
+                                                <option value="kg">kg</option>
+                                                <option value="lbs">lbs</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Calculate</button>
+                            </form>
+                            <div id="individualResult" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="organization">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Organization Carbon Footprint Calculator</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="organizationForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="energy" class="form-label">Annual Energy Consumption (MWh)</label>
+                                        <input type="number" class="form-control" id="energy" placeholder="Enter MWh">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="orgWaste" class="form-label">Annual Waste Generated (tons)</label>
+                                        <input type="number" class="form-control" id="orgWaste" placeholder="Enter tons">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="diesel" class="form-label">Total Diesel Consumption</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="diesel" placeholder="Enter amount">
+                                            <select class="form-select" id="dieselUnit">
+                                                <option value="liters">Liters</option>
+                                                <option value="gallons">Gallons</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="gasoline" class="form-label">Total Gasoline Consumption</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="gasoline" placeholder="Enter amount">
+                                            <select class="form-select" id="gasolineUnit">
+                                                <option value="liters">Liters</option>
+                                                <option value="gallons">Gallons</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="naturalGas" class="form-label">Natural Gas Consumption</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="naturalGas" placeholder="Enter amount">
+                                            <select class="form-select" id="naturalGasUnit">
+                                                <option value="cubic-meters">Cubic Meters</option>
+                                                <option value="therms">Therms</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="otherFuel" class="form-label">Other Fuel Types</label>
+                                        <input type="text" class="form-control" id="otherFuel" placeholder="Specify type and amount">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Calculate</button>
+                            </form>
+                            <div id="organizationResult" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <!-- <footer class="bg-primary text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Carbon Footprint in Indian Coal Mines. All rights reserved.</p>
+        </div>
+    </footer> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const individualForm = document.getElementById('individualForm');
+            const organizationForm = document.getElementById('organizationForm');
+    
+            individualForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Individual calculation logic
+                const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+                const transport = parseFloat(document.getElementById('transport').value) || 0;
+                const renewable = parseFloat(document.getElementById('renewable').value) || 0;
+                const waste = parseFloat(document.getElementById('waste').value) || 0;
+                const wasteUnit = document.getElementById('wasteUnit').value;
+    
+                // Conversion factors (these are approximations)
+                const CO2_ELECTRICITY = 0.92; // kg CO2 per kWh
+                const CO2_TRANSPORT = 0.12; // kg CO2 per km
+                const CO2_WASTE_KG = 2.5; // kg CO2 per kg of waste
+                const CO2_WASTE_LBS = 1.1; // kg CO2 per lb of waste
+    
+        
+                const carbonFromElectricity = (electricity - renewable) * CO2_ELECTRICITY;
+                const carbonFromTransport = transport * CO2_TRANSPORT;
+                const carbonFromWaste = waste * (wasteUnit === 'kg' ? CO2_WASTE_KG : CO2_WASTE_LBS);
+    
+                const totalCarbonFootprint = carbonFromElectricity + carbonFromTransport + carbonFromWaste;
+
+                document.getElementById('individualResult').innerHTML = `
+                    <h4>Total Carbon Footprint: ${totalCarbonFootprint.toFixed(2)} kg CO2</h4>
+                `;
+            });
+    
+            organizationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Organization calculation logic
+                const energy = parseFloat(document.getElementById('energy').value) || 0;
+                const orgWaste = parseFloat(document.getElementById('orgWaste').value) || 0;
+                const diesel = parseFloat(document.getElementById('diesel').value) || 0;
+                const gasoline = parseFloat(document.getElementById('gasoline').value) || 0;
+                const naturalGas = parseFloat(document.getElementById('naturalGas').value) || 0;
+    
+                const dieselUnit = document.getElementById('dieselUnit').value;
+                const gasolineUnit = document.getElementById('gasolineUnit').value;
+                const naturalGasUnit = document.getElementById('naturalGasUnit').value;
+    
+                // Conversion factors
+                const CO2_ENERGY = 450; // kg CO2 per MWh
+                const CO2_WASTE_TON = 1000; // kg CO2 per ton of waste
+                const CO2_DIESEL_LITERS = 2.68; // kg CO2 per liter of diesel
+                const CO2_DIESEL_GALLONS = 10.18; // kg CO2 per gallon of diesel
+                const CO2_GASOLINE_LITERS = 2.31; // kg CO2 per liter of gasoline
+                const CO2_GASOLINE_GALLONS = 8.89; // kg CO2 per gallon of gasoline
+                const CO2_NATURAL_GAS_CUBIC_METERS = 2.03; // kg CO2 per cubic meter of natural gas
+                const CO2_NATURAL_GAS_THERMS = 5.3; // kg CO2 per therm of natural gas
+    
+                // Calculations
+                const carbonFromEnergy = energy * CO2_ENERGY;
+                const carbonFromWaste = orgWaste * CO2_WASTE_TON;
+                const carbonFromDiesel = diesel * (dieselUnit === 'liters' ? CO2_DIESEL_LITERS : CO2_DIESEL_GALLONS);
+                const carbonFromGasoline = gasoline * (gasolineUnit === 'liters' ? CO2_GASOLINE_LITERS : CO2_GASOLINE_GALLONS);
+                const carbonFromNaturalGas = naturalGas * (naturalGasUnit === 'cubic-meters' ? CO2_NATURAL_GAS_CUBIC_METERS : CO2_NATURAL_GAS_THERMS);
+    
+                const totalOrganizationCarbon = carbonFromEnergy + carbonFromWaste + carbonFromDiesel + carbonFromGasoline + carbonFromNaturalGas;
+    
+                // Display result
+                document.getElementById('organizationResult').innerHTML = `
+                    <h4>Total Carbon Footprint: ${totalOrganizationCarbon.toFixed(2)} kg CO2</h4>
+                `;
+            });
+        });
+    </script>
+  <script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "OkJAjbNj7q8wkyKUh9YK9",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="OkJAjbNj7q8wkyKUh9YK9"
+    domain="www.chatbase.co"
+    defer>
+    </script>  
+</body>
+</html>
