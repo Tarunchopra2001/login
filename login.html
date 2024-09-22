@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup - Carbon Footprint Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            background: linear-gradient(to right, rgb(30, 93, 134) ,rgb(58, 107, 26),rgb(194, 89, 89));
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .tab {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab button {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0.75rem;
+            transition: 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #5f6368;
+        }
+        .tab button:hover {
+            background-color: #f1f3f4;
+        }
+        .tab button.active {
+            color: #1a73e8;
+            border-bottom: 2px solid #1a73e8;
+        }
+        form {
+            /* display: flex; */
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #5f6368;
+        }
+        input {
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        button:hover {
+            background-color: #1765cc;
+        }
+        .google-login {
+            background-color: #fff;
+            color: #5f6368;
+            border: 1px solid #dadce0;
+            margin: 1rem auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 200px;
+        }
+        .google-login:hover {
+            background-color: #f1f3f4;
+        }
+        .google-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .forgot-password a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #d93025;
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .switch-form {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+        .switch-form a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'individual')">Individual</button>
+            <button class="tablinks" onclick="openTab(event, 'organization')">Organization</button>
+        </div>
+
+        <form id="individualLoginForm" class="tabcontent" style="display: block;">
+            <label for="individualEmail">Email:</label>
+            <input type="email" id="individualEmail" name="email" required>
+            <div id="individualEmailError" class="error-message">Please enter a valid email address.</div>
+            <br>
+            <label for="individualPassword">Password:</label>
+            <input type="password" id="individualPassword" name="password" required>
+            <div id="individualPasswordError" class="error-message">Password must be at least 8 characters long.</div>
+            <br>
+            <button type="submit">Login</button>
+            <div class="switch-form">
+                <span>Don't have an account? </span>
+                <a href="#" onclick="switchForm('individualSignupForm', 'individualLoginForm')">Sign up</a>
+            </div>
+        </form>
+
+        <form id="individualSignupForm" class="tabcontent" style="display: none;">
+            <label for="individualSignupName">Full Name:</label>
+            <input type="text" id="individualSignupName" name="name" required>
+            <br>
+            <label for="individualSignupEmail">Email:</label>
+            <input type="email" id="individualSignupEmail" name="email" required>
+            <div id="individualSignupEmailError" class="error-message">Please enter a valid email address.</div>
+            <br>
+            <label for="individualSignupPassword">Password:</label>
+            <input type="password" id="individualSignupPassword" name="password" required>
+            <div id="individualSignupPasswordError" class="error-message">Password must be at least 8 characters long.</div>
+            <br>
+            <label for="individualSignupConfirmPassword">Confirm Password:</label>
+            <input type="password" id="individualSignupConfirmPassword" name="confirmPassword" required>
+            <div id="individualSignupConfirmPasswordError" class="error-message">Passwords do not match.</div>
+            <br>
+            <button type="submit">Sign Up</button>
+            <div class="switch-form">
+                <span>Already have an account? </span>
+                <a href="#" onclick="switchForm('individualLoginForm', 'individualSignupForm')">Login</a>
+            </div>
+        </form>
+
+        <form id="organizationLoginForm" class="tabcontent" style="display: none;">
+            <label for="organizationEmail">Email:</label>
+            <input type="email" id="organizationEmail" name="email" required>
+            <div id="organizationEmailError" class="error-message">Please enter a valid email address.</div>
+            <br>
+            <label for="organizationPassword">Password:</label>
+            <input type="password" id="organizationPassword" name="password" required>
+            <div id="organizationPasswordError" class="error-message">Password must be at least 8 characters long.</div>
+            <br>
+            <button type="submit" >Login</button>
+            <div class="switch-form">
+                <span>Don't have an account? </span>
+                <a href="#" onclick="switchForm('organizationSignupForm', 'organizationLoginForm')">Sign up</a>
+            </div>
+        </form>
+
+        <form id="organizationSignupForm" class="tabcontent" style="display: none;">
+            <label for="organizationSignupName">Organization Name:</label>
+            <input type="text" id="organizationSignupName" name="name" required>
+            <br>
+            <label for="organizationSignupEmail">Email:</label>
+            <input type="email" id="organizationSignupEmail" name="email" required>
+            <div id="organizationSignupEmailError" class="error-message">Please enter a valid email address.</div>
+            <br>
+            <label for="organizationSignupPassword">Password:</label>
+            <input type="password" id="organizationSignupPassword" name="password" required>
+            <div id="organizationSignupPasswordError" class="error-message">Password must be at least 8 characters long.</div>
+            <br>
+            <label for="organizationSignupConfirmPassword">Confirm Password:</label>
+            <input type="password" id="organizationSignupConfirmPassword" name="confirmPassword" required>
+            <div id="organizationSignupConfirmPasswordError" class="error-message">Passwords do not match.</div>
+            <br>
+            <button type="submit">Sign Up</button>
+            <div class="switch-form">
+                <span>Already have an account? </span>
+                <a href="#" onclick="switchForm('organizationLoginForm', 'organizationSignupForm')">Login</a>
+            </div>
+        </form>
+
+        <button class="google-login">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" class="google-icon">
+            Login with Google
+        </button>
+
+        <div class="forgot-password">
+            <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName + "LoginForm").style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+
+        function validateForm(formId, isSignup = false) {
+            const form = document.getElementById(formId);
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            const emailError = form.querySelector('.error-message');
+            const passwordError = form.querySelectorAll('.error-message')[1];
+
+            let isValid = true;
+
+            if (!validateEmail(email)) {
+                emailError.style.display = "block";
+                isValid = false;
+            } else {
+                emailError.style.display = "none";
+            }
+
+            if (!validatePassword(password)) {
+                passwordError.style.display = "block";
+                isValid = false;
+            } else {
+                passwordError.style.display = "none";
+            }
+
+            if (isSignup) {
+                const confirmPassword = form.querySelector('input[name="confirmPassword"]').value;
+                const confirmPasswordError = form.querySelectorAll('.error-message')[2];
+
+                if (password !== confirmPassword) {
+                    confirmPasswordError.style.display = "block";
+                    isValid = false;
+                } else {
+                    confirmPasswordError.style.display = "none";
+                }
+            }
+
+            return isValid;
+        }
+
+        document.getElementById("individualLoginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (validateForm("individualLoginForm")) {
+                console.log("Individual login attempt");
+                alert("Individual login successful!");
+            }
+        });
+
+        document.getElementById("organizationLoginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (validateForm("organizationLoginForm")) {
+                console.log("Organization login attempt");
+                alert("Organization login successful!");
+            }
+        });
+
+        document.getElementById("individualSignupForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (validateForm("individualSignupForm", true)) {
+                console.log("Individual signup attempt");
+                alert("Individual signup successful!");
+            }
+        });
+
+        document.getElementById("organizationSignupForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (validateForm("organizationSignupForm", true)) {
+                console.log("Organization signup attempt");
+                alert("Organization signup successful!");
+            }
+        });
+
+        function forgotPassword() {
+            const email = prompt("Please enter your email address:");
+            if (email) {
+                if (validateEmail(email)) {
+                    console.log("Password reset requested for:", email);
+                    alert("Password reset link sent to " + email);
+                } else {
+                    alert("Please enter a valid email address.");
+                }
+            }
+        }
+
+        document.querySelector(".google-login").addEventListener("click", function() {
+            console.log("Google login attempted");
+            alert("Google login attempted. This feature requires backend integration.");
+        });
+    </script>
+</body>
+</html>
